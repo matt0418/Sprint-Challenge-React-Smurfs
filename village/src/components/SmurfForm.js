@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom'
-
+import './SmurfForm.css';
 
 class SmurfForm extends Component {
   constructor(props) {
@@ -41,6 +41,7 @@ class SmurfForm extends Component {
   render() {
     return (
       <div className="SmurfForm">
+        <h2>Add New Smuurf</h2>
         <form onSubmit={this.addSmurf}>
           <input
             onChange={this.handleInputChange}
