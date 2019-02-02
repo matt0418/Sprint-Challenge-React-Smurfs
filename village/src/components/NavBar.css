@@ -1,0 +1,15 @@
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    margin: 2%;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    border: 1px solid blue;
+    padding: 10px 25px;
+    background: lightblue;
+}

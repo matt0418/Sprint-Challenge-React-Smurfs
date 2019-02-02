@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom'
+import './SmurfForm.css';
 
 class SmurfForm extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props.smurfs)
     this.state = {
+      // smurf: blankSmurf,
       name: '',
       age: '',
       height: ''
     };
+    
   }
 
   addSmurf = event => {
     event.preventDefault();
     // add code to create the smurf using the api
-
-    this.setState({
-      name: '',
-      age: '',
-      height: ''
-    });
+    axios.post(`http://localhost:3333/smurfs`, {name: this.state.name, age: this.state.age, height: this.state.height})
+      .then(res => {
+        console.log(res)
+        this.setState({
+          name: res.data.name,
+          age: res.data.age,
+          height: res.data.height
+        });
+        this.props.history.push('/')
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   handleInputChange = e => {
@@ -28,6 +41,7 @@ class SmurfForm extends Component {
   render() {
     return (
       <div className="SmurfForm">
+        <h2>Add New Smuurf</h2>
         <form onSubmit={this.addSmurf}>
           <input
             onChange={this.handleInputChange}
@@ -53,5 +67,7 @@ class SmurfForm extends Component {
     );
   }
 }
+
+
 
 export default SmurfForm;
